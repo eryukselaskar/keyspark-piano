@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { PianoKey } from './PianoKey';
 import { audioEngine } from '@/lib/audio';
+import { useMidi } from '@/hooks/use-midi';
 
 interface KeyboardProps {
     startOctave?: number;
@@ -82,24 +83,65 @@ export function Keyboard({ startOctave = 4, octaves = 2, showLabels = true, onPl
         };
     }, [onPlayNote, onStopNote]); // Re-bind if callbacks change
 
-    return (
-        <div className="flex justify-center items-start select-none p-4 rounded-xl bg-slate-900/50 backdrop-blur-sm shadow-2xl overflow-x-auto">
-            <div className="flex relative">
-                {keys.map((key) => {
-                    const mappedKey = Object.entries(KEY_MAP).find(([k, v]) => v === key.note)?.[0];
+    // MIDI Support
+    const { activeInput } = useMidi();
 
-                    return (
-                        <PianoKey
-                            key={key.note}
-                            note={key.note}
-                            isBlack={key.isBlack}
-                            isActive={activeNotes.has(key.note)}
-                            startNote={startNote}
-                            stopNote={stopNote}
-                            label={showLabels ? (mappedKey?.toUpperCase() || key.note) : undefined}
-                        />
-                    );
-                })}
+    useEffect(() => {
+        if (!activeInput) return;
+
+        const handleMidiMessage = (event: WebMidi.MIDIMessageEvent) => {
+            const [command, note, velocity] = event.data;
+
+            // Note On (144) or Note Off (128)
+            // Some devices send Note On with 0 velocity for Note Off
+            const isNoteOn = command === 144 && velocity > 0;
+            const isNoteOff = command === 128 || (command === 144 && velocity === 0);
+
+            // Convert MIDI number to Note Name (e.g., 60 -> C4)
+            const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+            const octave = Math.floor(note / 12) - 1;
+            const noteName = noteNames[note % 12];
+            const fullNoteString = `${noteName}${octave}`;
+
+            if (isNoteOn) {
+                startNote(fullNoteString);
+            } else if (isNoteOff) {
+                stopNote(fullNoteString);
+            }
+        };
+
+        activeInput.onmidimessage = handleMidiMessage;
+
+        return () => {
+            activeInput.onmidimessage = null;
+        };
+    }, [activeInput, onPlayNote, onStopNote]); // Re-bind if input changes
+
+    return (
+        <div className="flex flex-col items-center gap-4">
+            {activeInput && (
+                <div className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full animate-pulse">
+                    🎹 MIDI Connected: {activeInput.name}
+                </div>
+            )}
+            <div className="flex justify-center items-start select-none p-4 rounded-xl bg-slate-900/50 backdrop-blur-sm shadow-2xl overflow-x-auto">
+                <div className="flex relative">
+                    {keys.map((key) => {
+                        const mappedKey = Object.entries(KEY_MAP).find(([k, v]) => v === key.note)?.[0];
+
+                        return (
+                            <PianoKey
+                                key={key.note}
+                                note={key.note}
+                                isBlack={key.isBlack}
+                                isActive={activeNotes.has(key.note)}
+                                startNote={startNote}
+                                stopNote={stopNote}
+                                label={showLabels ? (mappedKey?.toUpperCase() || key.note) : undefined}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

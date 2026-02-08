@@ -1,13 +1,15 @@
 # KeySpark - Learn Piano the Modern Way
 
-KeySpark is a web-based piano learning application built with Next.js, Tone.js, and TailwindCSS. It features a responsive virtual piano, interactive lessons, and progress tracking.
+KeySpark is a web-based piano learning application built with Next.js, Tone.js, and TailwindCSS. It features a responsive virtual piano, interactive lessons, and progress tracking using XP and Levels.
 
 ## Features
 
 - **Virtual Piano**: 2-octave keyboard with realistic polyphonic sound.
 - **Interactive Lessons**: Step-by-step curriculum with real-time feedback.
+- **Song Library**: Learn songs like "Twinkle Twinkle Little Star" with a falling-notes visualizer.
+- **MIDI Support**: Connect your real digital piano via USB to play and learn.
+- **Gamification**: Earn XP, level up, and unlock ranks as you practice.
 - **Free Play Mode**: Experiment freely with mouse, touch, or keyboard support.
-- **Progress Tracking**: Track completed lessons and practice time locally.
 - **Metronome**: Built-in timing tool for practice.
 - **Premium Design**: Modern, glassmorphic UI with dark mode support.
 
@@ -16,9 +18,10 @@ KeySpark is a web-based piano learning application built with Next.js, Tone.js, 
 - **Framework**: [Next.js 14+ (App Router)](https://nextjs.org/)
 - **Language**: TypeScript
 - **Styling**: TailwindCSS 4
-- **Audio**: [Tone.js](https://tonejs.github.io/)
+- **Audio**: [Tone.js](https://tonejs.github.io/) + @tonejs/midi
 - **Icons**: Lucide React
 - **State**: React Hooks + LocalStorage
+- **APIs**: Web MIDI API
 
 ## Getting Started
 

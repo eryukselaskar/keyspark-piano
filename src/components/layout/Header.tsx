@@ -21,8 +21,14 @@ export function Header() {
                     <Link href="/lessons" className="text-sm font-medium hover:text-primary transition-colors">
                         Lessons
                     </Link>
+                    <Link href="/songs" className="text-sm font-medium hover:text-primary transition-colors">
+                        Songs
+                    </Link>
                     <Link href="/freeplay" className="text-sm font-medium hover:text-primary transition-colors">
                         Free Play
+                    </Link>
+                    <Link href="/profile" className="text-sm font-medium hover:text-primary transition-colors">
+                        Profile
                     </Link>
                 </nav>
             </div>

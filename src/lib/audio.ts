@@ -57,7 +57,7 @@ class AudioEngine {
     this.isInitialized = true;
   }
 
-  playNote(note: string, duration: string = "8n") {
+  playNote(note: string, duration: string | number = "8n") {
     if (!this.sampler) return;
     this.sampler.triggerAttackRelease(note, duration);
   }
