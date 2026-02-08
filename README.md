@@ -1,2 +1,4 @@
-# keyspark-piano
-🎹 KeySpark – Learning-focused piano app built with Next.js, Tone.js and modern UX.
+# 🎹 KeySpark
+
+KeySpark is a learning-focused piano web app designed to help beginners
+learn piano step by step through interactive lessons and real-time feedback.
