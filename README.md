@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KeySpark - Learn Piano the Modern Way
+
+KeySpark is a web-based piano learning application built with Next.js, Tone.js, and TailwindCSS. It features a responsive virtual piano, interactive lessons, and progress tracking.
+
+## Features
+
+- **Virtual Piano**: 2-octave keyboard with realistic polyphonic sound.
+- **Interactive Lessons**: Step-by-step curriculum with real-time feedback.
+- **Free Play Mode**: Experiment freely with mouse, touch, or keyboard support.
+- **Progress Tracking**: Track completed lessons and practice time locally.
+- **Metronome**: Built-in timing tool for practice.
+- **Premium Design**: Modern, glassmorphic UI with dark mode support.
+
+## Tech Stack
+
+- **Framework**: [Next.js 14+ (App Router)](https://nextjs.org/)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS 4
+- **Audio**: [Tone.js](https://tonejs.github.io/)
+- **Icons**: Lucide React
+- **State**: React Hooks + LocalStorage
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/eryukselaskar/keyspark-piano.git
+    cd keyspark-piano
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4.  Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Keyboard Shortcuts
 
-## Learn More
+- **White Keys**: A, S, D, F, G, H, J, K, L, ;
+- **Black Keys**: W, E, T, Y, U, O, P
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
